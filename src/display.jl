@@ -100,7 +100,10 @@ function SyncPlot(
 
         # Draw plot in container
         Plotly.newPlot(
-            gd, $(lowered[:data]), $(lowered[:layout]), $(options)
+            gd, Dict(:data => $(lowered[:data]),
+                     :layout => $(lowered[:layout]),
+                     :config => $(options),
+                     :frames => $(get(lowered, :frames, [])))
         )
 
         # hook into plotly events
